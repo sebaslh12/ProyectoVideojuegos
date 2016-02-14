@@ -6,6 +6,7 @@ public class Ball_control : MonoBehaviour {
     public float jumpHeight;
     public float tranSpeed;
     public bool isJumping = false;
+    private int points = 0;
     Rigidbody2D body;
 
 	// Use this for initialization
@@ -19,9 +20,10 @@ public class Ball_control : MonoBehaviour {
 	void Update () {
         
         if(Input.GetKeyDown(KeyCode.Space)){
-            if(isJumping == false){
-                body.AddForce(Vector2.up*jumpHeight);
+            if (isJumping == false){
+                body.AddForce(Vector2.up * jumpHeight);
                 isJumping = true;
+                points++;
             }
         }
             
@@ -32,6 +34,9 @@ public class Ball_control : MonoBehaviour {
             body.AddForce(Vector2.right * tranSpeed);
         }
 
+    }
+    public int getPoints() {
+        return points;
     }
 
     void OnCollisionEnter2D(Collision2D col) { 
