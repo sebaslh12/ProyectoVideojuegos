@@ -9,6 +9,7 @@ public class MainScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+
         playerBall = GameObject.Find("Bouncy_Ball");
 
     }
