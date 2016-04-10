@@ -12,5 +12,5 @@ En este repositorio se encuentran los assets y las instrucciones necesarios para
     -La camara tiene el script MainScript.
     -Se debe crear un tag llamado "Platform" (sin las comillas) y se debe asignar a cada una de las barras.
     -Las escenas se encuentran en la carpeta Scenes:
-      -Menu correspondeal inicio (Pendiente de implementar).
+      -Menu corresponde al inicio (Pendiente de implementar).
       -Game corresponde a todo el juego.
