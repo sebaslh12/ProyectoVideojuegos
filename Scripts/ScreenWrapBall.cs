@@ -104,20 +104,15 @@ public class ScreenWrapBall : MonoBehaviour {
 
 			isWrappingX = true;
 		}
-
 		// Wrap it is off screen along the y-axis and is not being wrapped already
 
-		/*
+		
 		if (!isWrappingY && (viewportPosition.y > 1 || viewportPosition.y < 0))
 		{
-			newPosition.y = -newPosition.y;
-
-			isWrappingY = true;
+            Application.LoadLevel("Menu");
 		}
 
-		*/
-
-
+		
 		//Apply new position
 		transform.position = newPosition;
 	}

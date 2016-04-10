@@ -7,27 +7,28 @@ public class ScreenWrapBarsRight : MonoBehaviour {
 	//Bar's Spawn Positions
 	bool isWrappingX = false;
 	bool isWrappingY = false;
-	float speed = 1.0F;
+	float lvlspeed;
+    Camera main;
 	Rigidbody2D bar;
 
 	// Use this for initialization
 	void Start () {
 		bar = GetComponent<Rigidbody2D> ();
 		renderers = GetComponentsInChildren<Renderer>();
+        main = Camera.main;
 	}
 	
 	
 	// Update is called once per frame
-	void Update () {	
-		/* Versión 1 */
-		bar.AddForce (Vector2.down * 1.0f);
-		Wrap();
-	}
-	
-	//void OnTriggerEnter(Collider src)
-	//{
-	//    System.Console.Write("Colisión");
-	//} 
+	void Update () {
+
+        lvlspeed = ((MainScript)main.GetComponent("MainScript")).getLvl();
+
+        transform.position += Vector3.down * lvlspeed * Time.deltaTime;
+        
+        Wrap();
+	}	
+
 	void Wrap()
 	{
 		// If all parts of the object are invisible we wrap it around
@@ -47,7 +48,7 @@ public class ScreenWrapBarsRight : MonoBehaviour {
 			return;
 		}
 		
-		var cam = Camera.main;
+		
 		var newPosition = transform.position;
 		
 		// We need to check whether the object went off screen along the horizontal axis (X),
@@ -63,7 +64,7 @@ public class ScreenWrapBarsRight : MonoBehaviour {
 		// a coordinate greater than 1
 		//
 		// So, we get the ships viewport position
-		var viewportPosition = cam.WorldToViewportPoint(transform.position);
+		var viewportPosition = main.WorldToViewportPoint(transform.position);
 		
 		
 		// Wrap it is off screen along the x-axis and is not being wrapped already
@@ -93,15 +94,11 @@ public class ScreenWrapBarsRight : MonoBehaviour {
 		if (!isWrappingY && (viewportPosition.y > 1 || viewportPosition.y < 0))
 		{
 			newPosition.y = -newPosition.y;
-			newPosition.x = Random.Range(4,9);
+			newPosition.x = Random.Range(6,8);
 			
 			
 			isWrappingY = true;
 		}
-		
-		
-		
-		
 		//Apply new position
 		transform.position = newPosition;
 	}

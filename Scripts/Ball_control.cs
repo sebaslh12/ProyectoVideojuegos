@@ -1,11 +1,10 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class Ball_control : MonoBehaviour {
 
     public float jumpHeight;
     public float tranSpeed;
-    public bool isJumping = false;
+    private bool isJumping = false;
     private int points = 0;
     Rigidbody2D body;
 
@@ -23,7 +22,7 @@ public class Ball_control : MonoBehaviour {
             if (isJumping == false){
                 body.AddForce(Vector2.up * jumpHeight);
                 isJumping = true;
-                points++;
+                points+=5;
             }
         }
             
@@ -32,6 +31,10 @@ public class Ball_control : MonoBehaviour {
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow)) {
             body.AddForce(Vector2.right * tranSpeed);
+        }
+        else if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            body.AddForce(Vector2.down * tranSpeed);
         }
 
     }

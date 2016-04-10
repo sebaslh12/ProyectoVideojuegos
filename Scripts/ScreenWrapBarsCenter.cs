@@ -9,22 +9,24 @@ public class ScreenWrapBarsCenter : MonoBehaviour {
 	//Bar's Spawn Positions
 	bool isWrappingX = false;
 	bool isWrappingY = false;
-	float speed = 1.0F;
+	float lvlspeed;
 	Rigidbody2D bar;
-	
-	// Use this for initialization
-	void Start () {		
+    Camera main;
+    // Use this for initialization
+    void Start () {		
 		bar = GetComponent<Rigidbody2D> ();
 		renderers = GetComponentsInChildren<Renderer>();
-	}
+        main = Camera.main;
+    }
 	
 	
 	// Update is called once per frame
-	void Update () {	
-		/* Versión 1 */
-
-		Wrap();
-		bar.AddForce (Vector2.down * 1.0f);
+	void Update () {
+        //Get the lvl based on the player points
+        lvlspeed = ((MainScript)main.GetComponent("MainScript")).getLvl();
+        //Gravity
+        transform.position += Vector3.down * lvlspeed * Time.deltaTime;
+		Wrap();       
 	}
 	
 	//void OnTriggerEnter(Collider src)
@@ -96,7 +98,7 @@ public class ScreenWrapBarsCenter : MonoBehaviour {
 		if (!isWrappingY && (viewportPosition.y > 1 || viewportPosition.y < 0))
 		{
 			newPosition.y = -newPosition.y;
-			newPosition.x = Random.Range(-4,5);
+			newPosition.x = Random.Range(-2,3);
 			
 			
 			isWrappingY = true;
