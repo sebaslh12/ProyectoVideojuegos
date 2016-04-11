@@ -44,7 +44,8 @@ public class Ball_control : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D col) { 
         if(col.gameObject.tag == "Platform"){
-            isJumping = false;
+        	if(col.gameObject.transform.position.y < transform.position.y)
+            		isJumping = false;
         }
         
     }
