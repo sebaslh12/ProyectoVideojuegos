@@ -18,11 +18,11 @@ public class Ball_control : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         
-        if(Input.GetKeyDown(KeyCode.Space)){
+        if(Input.GetKeyDown(KeyCode.Space)){			
             if (isJumping == false){
+				points+=5;
                 body.AddForce(Vector2.up * jumpHeight);
-                isJumping = true;
-                points+=5;
+                isJumping = true;                
             }
         }
             
@@ -44,8 +44,8 @@ public class Ball_control : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D col) { 
         if(col.gameObject.tag == "Platform"){
-        	if(col.gameObject.transform.position.y < transform.position.y)
-            		isJumping = false;
+			if(col.gameObject.transform.position.y < transform.position.y)
+            	isJumping = false;
         }
         
     }

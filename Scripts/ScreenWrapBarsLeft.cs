@@ -27,6 +27,7 @@ public class ScreenWrapBarsLeft : MonoBehaviour {
         lvlspeed = ((MainScript)main.GetComponent("MainScript")).getLvl();
         //Gravity
         transform.position += Vector3.down * lvlspeed * Time.deltaTime;
+		transform.Translate (transform.right * Mathf.Sin (Time.time*2f) * Time.deltaTime/2f);
         Wrap();
 	}
 
